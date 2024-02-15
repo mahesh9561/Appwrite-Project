@@ -1,12 +1,12 @@
 import React, { useCallback, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { Input, RTE, Select } from '../index';
+import { Input, RTE, Select, Buttons } from '../index';
 import appwriteService from '../../appwrite/config';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 function PostForm({ post }) {
-    const { register, handleSubmit, watch, setValue, getValues } = useForm({
+    const { register, handleSubmit, watch, setValue, getValues, control } = useForm({
         defaultValues: {
             title: post?.title || '',
             slug: post?.slug || '',
@@ -127,9 +127,9 @@ function PostForm({ post }) {
                     className="mb-4"
                     {...register("status", { required: true })}
                 />
-                <Button type="submit" bgColor={post ? "bg-green-500" : undefined} className="w-full">
+                <Buttons type="submit" bgColor={post ? "bg-green-500" : undefined} className="w-full">
                     {post ? "Update" : "Submit"}
-                </Button>
+                </Buttons>
             </div>
         </form>
     )
